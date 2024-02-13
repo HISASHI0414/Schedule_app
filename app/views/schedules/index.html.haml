@@ -1,2 +1,5 @@
-= month_calendar do |date|
+= month_calendar events: @meetings do |date, meetings|
   = date.day
+
+%div.new-schedule
+  = link_to '+', new_schedule_path, class: 'btn btn-primary font-large'
