@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_082357) do
     t.date "finished_at", null: false
     t.boolean "alarm", default: false, null: false
     t.text "url"
+    t.boolean "schedule_repeated", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -6,6 +6,7 @@ class CreateSchedules < ActiveRecord::Migration[7.1]
       t.date :finished_at, null: false
       t.boolean :alarm, default: false, null: false
       t.text :url
+      t.boolean :schedule_repeated, default: false, null: false
       t.timestamps
     end
   end
