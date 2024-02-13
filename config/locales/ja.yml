@@ -7,9 +7,9 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     attributes:
-      article:
-        title: 'タイトル'
-        content: '内容'
+      schedule:
+        previous: '前月'
+        next: '翌月'
   date:
     abbr_day_names:
     - 日
@@ -42,6 +42,7 @@ ja:
     - 金曜日
     - 土曜日
     formats:
+      month_year: "%Y年%-m月"
       default: "%Y/%m/%d"
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"

@@ -1,0 +1,66 @@
+.calendar-heading {
+  text-align: center;
+  font-weight: bold;
+  padding: 15px 20px;
+}
+
+.calendar-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header-nav {
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.simple-calendar {
+  .day {
+    height: 110px;
+    text-align: center;
+  }
+
+  th {
+    text-align: center;
+  }
+
+  .wday-0 {background-color: #E7D5E8;}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {background-color: #D4EBEA;}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}
+
+.schedule_title {
+  text-align: left;
+  &_text {
+    font-size: 6px;
+    text-decoration: none;
+  }
+}
+
+.new-schedule {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+.log-out {
+  margin-top: 20px;
+  text-align: center;
+}
