@@ -15,7 +15,7 @@ class SchedulesController < ApplicationController
       ScheduleMailer.creation_schedule_email(@schedule).deliver_now
       redirect_to root_path, notice: "新規スケジュールを登録しました。"
     else
-      render :new, notice: "スケジュールの作成に失敗しました。"
+      render :new, notice: "スケジュールの作成に失敗しました。", status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class SchedulesController < ApplicationController
       ScheduleMailer.creation_schedule_email(@schedule).deliver_now
       redirect_to root_path, notice: "新規スケジュールを更新しました。"
     else
-      render :edit, notice: "スケジュールの更新に失敗しました。"
+      render :edit, notice: "スケジュールの更新に失敗しました。", status: :unprocessable_entity
     end
   end
 
