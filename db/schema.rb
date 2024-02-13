@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_082357) do
   enable_extension "plpgsql"
 
   create_table "schedules", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "title", null: false
     t.date "started_at", null: false
     t.date "finished_at", null: false
@@ -23,6 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_082357) do
     t.boolean "schedule_repeated", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

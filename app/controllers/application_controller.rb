@@ -3,4 +3,5 @@ class ApplicationController < ActionController::Base
     ActiveDecorator::Decorator.instance.decorate(super) if super.present?
     super
   end
+  before_action :authenticate_user! #ログインした人しかできない
 end

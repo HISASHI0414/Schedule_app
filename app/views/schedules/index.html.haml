@@ -3,3 +3,6 @@
 
 %div.new-schedule
   = link_to '+', new_schedule_path, class: 'btn btn-primary font-large'
+
+%div.log-out
+  = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: "delete" }, class: 'btn btn-primary font-large'

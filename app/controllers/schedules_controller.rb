@@ -3,11 +3,11 @@ class SchedulesController < ApplicationController
   end
 
   def new
-    @schedule = current_user.schedules
+    @schedule = current_user.schedules.build
   end
 
   def create
-    @schedule = current_user.schedules(schedule_params)
+    @schedule = current_user.schedules.build(schedule_params)
     if @schedule.save
       ScheduleMailer.creation_schedule_email(@schedule).deliver_now
       redirect_to root_path, notice: "新規スケジュールを登録しました。"

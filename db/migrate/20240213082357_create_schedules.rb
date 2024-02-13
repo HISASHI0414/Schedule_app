@@ -1,6 +1,7 @@
 class CreateSchedules < ActiveRecord::Migration[7.1]
   def change
     create_table :schedules do |t|
+      t.references :user, null: false
       t.string :title, null: false
       t.date :started_at, null: false
       t.date :finished_at, null: false
