@@ -1,5 +1,8 @@
 class SchedulesController < ApplicationController
+  before_action :set_schedule, only: %w[show edit update destroy]
+
   def index
+    @schedules = Schedule.all
   end
 
   def new
@@ -23,13 +26,26 @@ class SchedulesController < ApplicationController
   end
 
   def update
+    if @schedule.update(schedule_params)
+      ScheduleMailer.creation_schedule_email(@schedule).deliver_now
+      redirect_to root_path, notice: "新規スケジュールを更新しました。"
+    else
+      render :edit, notice: "スケジュールの更新に失敗しました。"
+    end
   end
 
   def destroy
+    @schedule.destroy!
+    redirect_to root_path
   end
 
   private
+  def set_schedule
+    @schedule = Schedule.find(params[:id])
+  end
+
   def schedule_params
-    params.require(:schedule).permit(params[:title, :started_at, :finished_at, :alarm, :url, :schedule_repeated])
+    params.require(:schedule).permit(
+      :title, :start_time, :end_time, :alarm, :url, :schedule_repeated)
   end
 end

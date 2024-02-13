@@ -7,11 +7,13 @@
     = f.label :title, "タイトル"
     = f.text_field :title, class: "form-control", id: "schedule_title"
   .form-group
-    = f.label :started_at, "開始日"
-    = f.text_area :started_at
+    = f.label :start_time, "開始日"
+    %br
+    = f.date_select :start_time
   .form-group
-    = f.label :finished_at, "終了日"
-    = f.text_area :finished_at
+    = f.label :end_time, "終了日"
+    %br
+    = f.date_select :end_time
   .form-group
     = f.label :alarm, class: "form-check-label" do
       = f.object.class.human_attribute_name("アラーム設定  |   ")

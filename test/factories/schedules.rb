@@ -4,9 +4,9 @@
 #
 #  id                :bigint           not null, primary key
 #  alarm             :boolean          default(FALSE), not null
-#  finished_at       :date             not null
+#  end_time          :date             not null
 #  schedule_repeated :boolean          default(FALSE), not null
-#  started_at        :date             not null
+#  start_time        :date             not null
 #  title             :string           not null
 #  url               :text
 #  created_at        :datetime         not null

@@ -1,8 +1,12 @@
-= month_calendar events: @meetings do |date, meetings|
+= month_calendar(events: @schedules) do |date, schedules|
   = date.day
+
+  - schedules.each do |schedule|
+    %div.schedule_title
+      = link_to "#{schedule.title.truncate(6,omission: "••")}", schedule_path(schedule), class: "schedule_title_text"
 
 %div.new-schedule
   = link_to '+', new_schedule_path, class: 'btn btn-primary font-large'
 
 %div.log-out
-  = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: "delete" }, class: 'btn btn-primary font-large'
+  = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }

@@ -17,8 +17,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_082357) do
   create_table "schedules", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
-    t.date "started_at", null: false
-    t.date "finished_at", null: false
+    t.date "start_time", null: false
+    t.date "end_time", null: false
     t.boolean "alarm", default: false, null: false
     t.text "url"
     t.boolean "schedule_repeated", default: false, null: false
