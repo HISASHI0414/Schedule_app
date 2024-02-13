@@ -22,4 +22,12 @@ class Schedule < ApplicationRecord
   validates :title, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
+
+  validate :end_time_is_not_before_start_time
+
+  def end_time_is_not_before_start_time
+    if self.start_time > self.end_time
+      errors.add(:end_time, "は開始日より前の日付で登録できません。")
+    end
+  end
 end
