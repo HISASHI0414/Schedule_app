@@ -59,8 +59,21 @@
   margin-top: 20px;
 }
 
-
 .log-out {
   margin-top: 20px;
   text-align: center;
+}
+
+.form-group {
+  label {
+    margin-top: 15px;
+  }
+  &:nth-of-type(5) {
+    margin-bottom: 20px;
+  }
+}
+
+.form-check-input {
+  margin-left: 10px;
+  margin-top: 20px;
 }
