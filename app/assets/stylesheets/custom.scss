@@ -47,10 +47,14 @@
 }
 
 .schedule_title {
-  text-align: left;
+  text-align: center;
+  line-height: 1.0;
   &_text {
     font-size: 6px;
     text-decoration: none;
+    color:#fff;
+    background-color: lightblue;
+    padding: 2px 3px;
   }
 }
 

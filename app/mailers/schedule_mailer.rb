@@ -4,6 +4,6 @@ class ScheduleMailer < ApplicationMailer
     mail(
       to: @schedule.user.email,
       subject: '新しいスケジュールが登録されました。',
-      from: @schedule.user.email)
+      from: ENV['SMTP_USERNAME'])
   end
 end
