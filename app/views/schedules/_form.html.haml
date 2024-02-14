@@ -9,11 +9,11 @@
   .form-group
     = f.label :start_time, "開始日"
     %br
-    = f.date_select :start_time
+    = f.datetime_select :start_time
   .form-group
     = f.label :end_time, "終了日"
     %br
-    = f.date_select :end_time
+    = f.datetime_select :end_time
   .form-group
     = f.label :alarm, class: "form-check-label" do
       = f.object.class.human_attribute_name("アラーム設定  |   ")
