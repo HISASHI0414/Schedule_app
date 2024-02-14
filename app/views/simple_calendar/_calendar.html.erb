@@ -1,3 +1,18 @@
+    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+    
+    <div class="calendar-title">
+      <select id="year-select">
+        <% (Date.current.year - 10..Date.current.year + 10).each do |year| %>
+          <option value="<%= year %>" <%= 'selected' if year == start_date.year %>><%= "#{year}年" %></option>
+        <% end %>
+      </select>
+      <select id="month-select">
+        <% (1..12).each do |month| %>
+          <option value="<%= month %>" <%= 'selected' if month == start_date.month %>><%= "#{month}月" %></option>
+        <% end %>
+      </select>
+    </div>
+
 <div class="simple-calendar">
   <div class="calendar-heading">
     <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
