@@ -57,7 +57,7 @@ gem 'rubocop-rails'
 gem "bootstrap", "~> 5.1.3"
 gem "simple_calendar"
 gem 'active_decorator'
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'dotenv-rails', require: 'dotenv/load'
 gem 'whenever', require: false
 
 group :development, :test do

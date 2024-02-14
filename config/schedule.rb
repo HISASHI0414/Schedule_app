@@ -18,6 +18,16 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.minute do
-  runner "NotificationMailer.send_notification_emails"
+
+set :environment, :development
+set :output, "log/cron.log" # Set the output file to log/cron.log
+set :runner_command, "rails runner"
+
+env :PATH, ENV['RBENV_ROOT'] ? "#{ENV['RBENV_ROOT']}/shims:#{ENV['PATH']}" : ENV['PATH']
+# every 1.minute do
+#   command %Q{cd /Users/hisashi-fujisato/Schedule_app && bundle exec rails runner -e development "NotificationMailer.send_notification_emails.deliver_now; puts 'Email sent at #{Time.now}'"}
+# end
+
+every 30.minutes do
+  command %Q{cd /Users/hisashi-fujisato/Schedule_app && bundle exec rails runner -e development "NotificationMailer.send_notification_emails.deliver_now; puts 'Email sent at ' + Time.now.to_s"}
 end
