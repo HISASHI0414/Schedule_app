@@ -46,6 +46,6 @@ class SchedulesController < ApplicationController
 
   def schedule_params
     params.require(:schedule).permit(
-      :title, :start_time, :end_time, :alarm, :url, :schedule_repeated)
+      :title, :start_time, :end_time, :alarm, :related_schedules_ids)
   end
 end
