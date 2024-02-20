@@ -7,19 +7,19 @@
     = f.label :title, "タイトル"
     = f.text_field :title, class: "form-control", id: "schedule_title"
   .form-group
-    = f.label :start_time, "開始日"
+    = f.label :start_time, "予定日"
     %br
-    = f.datetime_select :start_time
-  .form-group
-    = f.label :end_time, "終了日"
-    %br
-    = f.datetime_select :end_time
+    = f.date_select :start_time
   .form-group
     = f.label :alarm, class: "form-check-label" do
       = f.object.class.human_attribute_name("アラーム設定  |   ")
     = f.check_box :alarm, class: "form-check-input"
+  %p.setting_repeated_schedule ↓ 繰り返し設定 ↓
   .form-group
-    = f.label :schedule_repeated, class: "form-check-label" do
-      = f.object.class.human_attribute_name("繰り返し設定  |")
-    = f.check_box :schedule_repeated, class: "form-check-input"
+    = f.label :related_schedule_pattern, "定期スケジュールの間隔", class: "form-check-label"
+    = f.select :related_schedule_pattern, options_for_select([["繰り返しなし", 0],["毎日", 1], ["毎週", 2], ["隔週", 3], ["毎月", 4], ["隔月", 5], ["毎年", 6]]), {}, class: "form-control"
+  .form-group
+    = f.label :end_time, "定期スケジュールの終了日"
+    %br
+    = f.date_select :end_time, id: "end_time"
   = f.submit "登録", class: "btn btn-primary"

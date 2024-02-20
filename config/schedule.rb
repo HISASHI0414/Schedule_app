@@ -28,6 +28,6 @@ env :PATH, ENV['RBENV_ROOT'] ? "#{ENV['RBENV_ROOT']}/shims:#{ENV['PATH']}" : ENV
 #   command %Q{cd /Users/hisashi-fujisato/Schedule_app && bundle exec rails runner -e development "NotificationMailer.send_notification_emails.deliver_now; puts 'Email sent at #{Time.now}'"}
 # end
 
-every 1.hour do
+every 1.minute do
   command %Q{cd /Users/hisashi-fujisato/Schedule_app && bundle exec rails runner -e development "NotificationMailer.send_notification_emails.deliver_now; puts 'Email sent at ' + Time.now.to_s"}
 end

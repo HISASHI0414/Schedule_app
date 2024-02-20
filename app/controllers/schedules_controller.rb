@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: %w[show edit update destroy]
+  include RecurringSchedulesCreation
 
   def index
     @schedules = Schedule.all
@@ -9,14 +10,19 @@ class SchedulesController < ApplicationController
     @schedule = current_user.schedules.build
   end
 
+  # def create
+  #   @schedule = current_user.schedules.build(schedule_params)
+  #   if @schedule.save
+  #     ScheduleMailer.creation_schedule_email(@schedule).deliver_now
+  #     redirect_to root_path, notice: "新規スケジュールを登録しました。"
+  #   else
+  #     render :new, notice: "スケジュールの作成に失敗しました。", status: :unprocessable_entity
+  #   end
+  # end
+
   def create
-    @schedule = current_user.schedules.build(schedule_params)
-    if @schedule.save
-      # ScheduleMailer.creation_schedule_email(@schedule).deliver_now
-      redirect_to root_path, notice: "新規スケジュールを登録しました。"
-    else
-      render :new, notice: "スケジュールの作成に失敗しました。", status: :unprocessable_entity
-    end
+    # フォームから送信されたデータを処理
+    create_recurring_schedules(schedule_params)
   end
 
   def show
@@ -26,16 +32,24 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    if @schedule.update(schedule_params)
-      # ScheduleMailer.creation_schedule_email(@schedule).deliver_now
-      redirect_to root_path, notice: "新規スケジュールを更新しました。"
+    if params[:schedule][:title].present?
+      new_title = params[:schedule][:title]
+      if Schedule.where(related_schedules_ids: @schedule.related_schedules_ids)
+                  .update_all(title: new_title)
+        ScheduleMailer.creation_schedule_email(@schedule).deliver_now
+        redirect_to root_path, notice: "スケジュールを更新しました。"
+      else
+        render :edit, notice: "スケジュールの更新に失敗しました。", status: :unprocessable_entity
+      end
     else
-      render :edit, notice: "スケジュールの更新に失敗しました。", status: :unprocessable_entity
+      render :edit, alert: 'タイトルは空にできません。', status: :unprocessable_entity
     end
   end
 
   def destroy
-    @schedule.destroy!
+    Schedule.where(related_schedules_ids: @schedule.related_schedules_ids)
+            .destroy_all
+    ScheduleMailer.creation_schedule_email(@schedule).deliver_now
     redirect_to root_path
   end
 
@@ -46,6 +60,6 @@ class SchedulesController < ApplicationController
 
   def schedule_params
     params.require(:schedule).permit(
-      :title, :start_time, :end_time, :alarm, :related_schedules_ids)
+      :title, :start_time, :end_time, :alarm, :related_schedules_ids, :related_schedule_pattern)
   end
 end
