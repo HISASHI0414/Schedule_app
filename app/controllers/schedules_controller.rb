@@ -6,6 +6,12 @@ class SchedulesController < ApplicationController
     @schedules = Schedule.all
     weather_service = WeatherService.new(ENV["OPENWEATHERMAP_API_KEY"]) #seriveces/weather_service.rbに記載
     @forecasts = weather_service.forecast("Kawasaki")
+
+    # 予報データから日毎の最初のデータのみを抽出
+    @daily_forecasts = @forecasts["list"].each_with_object({}) do |forecast, acc|
+      date = Date.parse(forecast["dt_txt"]).strftime("%Y-%m-%d")
+      acc[date] ||= forecast
+    end.values
   end
 
   def new
