@@ -9,6 +9,6 @@ class WeatherService
   end
 
   def forecast(city)
-    self.class.get("/weather?q=#{city}&appid=#{@api_key}&units=metric")
+    self.class.get("/forecast?q=#{city}&appid=#{@api_key}&units=metric")
   end
 end

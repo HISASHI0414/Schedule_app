@@ -4,6 +4,8 @@ class SchedulesController < ApplicationController
 
   def index
     @schedules = Schedule.all
+    weather_service = WeatherService.new(ENV["OPENWEATHERMAP_API_KEY"]) #seriveces/weather_service.rbに記載
+    @forecasts = weather_service.forecast("Kawasaki")
   end
 
   def new
