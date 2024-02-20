@@ -69,6 +69,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'better_errors'
+  gem "binding_of_caller"
+  gem "pry-byebug"
   gem 'erb2haml'
   gem 'letter_opener'
   gem 'letter_opener_web', '~> 1.0'

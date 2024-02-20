@@ -1,2 +1,10 @@
 .container
-  = render "form", schedule: @schedule
+  %ul
+  - @schedule.errors.full_messages.each do |message|
+    %li= message
+
+  = form_with model: @schedule, local: true do |f|
+    .form-group
+      = f.label :title, "タイトル"
+      = f.text_field :title, class: "form-control", id: "schedule_title"
+    = f.submit "更新", class: "btn btn-primary"

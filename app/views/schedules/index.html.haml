@@ -2,7 +2,7 @@
   = date.day
   - schedules.each do |schedule|
     %div.schedule_title
-      = link_to "#{schedule.title.truncate(6,omission: "••")}", schedule_path(schedule), class: "schedule_title_text"
+      = link_to "#{schedule.title.truncate(5,omission: "••")}", schedule_path(schedule), class: "schedule_title_text"
 
 .new-schedule
   = link_to '+', new_schedule_path, class: 'btn btn-primary font-large'
